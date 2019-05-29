@@ -5,7 +5,7 @@ const port = 80;
 const page = `
 <html>
 	<head>
-		<title>RC Car</title>
+		<title>Latency Test</title>
 		<script>
 			const ws = new WebSocket("ws://" + location.host, "protocolOne");
 			var time;
@@ -31,8 +31,7 @@ const page = `
 </html>
 `;
 
-// https://www.espruino.com/ESP8266_WifiUsage
-const wifi = require("Wifi");
+const wifi = require("Wifi"); // https://www.espruino.com/ESP8266_WifiUsage
 wifi.connect(ssid, {password: password}, function(err) {
 	if (err) {
 		console.log("Connection error:", err);
@@ -49,15 +48,13 @@ wifi.connect(ssid, {password: password}, function(err) {
 	wifi.save();
 });
 
-// https://www.espruino.com/Saving
-function onInit() {
-	// https://www.espruino.com/ws#websocket-server
-	const socketserver = require('ws').createServer(function(req, res) {
+function onInit() { // https://www.espruino.com/Saving
+	const socketserver = require('ws').createServer(function(req, res) { // https://www.espruino.com/ws#websocket-server
 		const urlparts = url.parse(req.url, true);
-		if (urlparts.pathname=="/") {
+		if (urlparts.pathname == "/") {
 			res.writeHead(200);
 			res.end(page);
-		} else if (urlparts.pathname=="/test") {
+		} else if (urlparts.pathname == "/test") {
 			res.writeHead(200);
 			res.end("Hello World!");
 		}	

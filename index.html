@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>RC Car</title>
+		<link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+		<script src="https://unpkg.com/canvas-gauges/gauge.min.js"></script>
+		<script src="script.js"></script>
+	</head>
+	<body>
+		<div id="connection" class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 m-5" role="alert">
+			<p class="font-bold"></p>
+			<p></p>
+		</div>
+		<canvas id="speed"
+			data-type="radial-gauge"
+			data-min-value="-20"
+			data-max-value="100"
+			data-animation-duration="100"
+			data-value-box="false"
+			data-width="300"
+			data-height="300"
+			data-units="Speed (%)"
+			data-major-ticks="[-20,0,20,40,60,80,100]">
+		</canvas>
+		<canvas id="turn"
+			data-type="linear-gauge"
+			data-width="400"
+			data-height="150"
+			data-min-value="-30"
+			data-max-value="30"
+			data-major-ticks="-30,-20,-10,0,10,20,30"
+			data-minor-ticks="5"
+			data-animation-duration="100"
+			data-bar-begin-circle="false">
+	</canvas>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "rc-car",
+  "version": "1.0.0",
+  "description": "Code to allow an ESP8266 to control a Remote Control Car over WiFi, using a websocket.",
+  "main": "client.js",
+  "scripts": {
+    "flash": "esptool.py --port COM6 --baud 115200 write_flash --flash_freq 80m --flash_mode qio --flash_size 32m 0x0000 firmware/boot_v1.6.bin 0x1000 firmware/espruino_esp8266_user1.bin 0x3FC000 firmware/esp_init_data_default.bin 0x3FE000 firmware/blank.bin",
+    "upload": "node write.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoderDojo-Porirua/RC-Car.git"
+  },
+  "author": "Mark Honeychurch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CoderDojo-Porirua/RC-Car/issues"
+  },
+  "homepage": "https://github.com/CoderDojo-Porirua/RC-Car#readme",
+  "devDependencies": {
+    "espruino": "^0.1.27",
+    "tailwindcss": "^1.0.2"
+  }
+}
