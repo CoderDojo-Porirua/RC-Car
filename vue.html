@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>RC Car</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="https://unpkg.com/canvas-gauges/gauge.min.js"></script>
+		<link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+		<script src="vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="connection" :class="['bg-' + alert.colour + '-100', 'border-' + alert.colour + '-500', 'text-' + alert.colour + '-700', 'border-l-4', 'p-4', 'm-5']">
+				<p class="font-bold">{{alert.title}}</p>
+				<p>{{alert.message}}</p>
+			</div>
+			<canvas ref="speed"
+				:data-value="speed * 100"
+				data-type="radial-gauge"
+				data-min-value="-20"
+				data-max-value="100"
+				data-animation-duration="100"
+				data-value-box="false"
+				data-width="300"
+				data-height="300"
+				data-units="Speed (%)"
+				data-major-ticks="[-20,0,20,40,60,80,100]">
+			</canvas>
+			<canvas ref="turn"
+				:data-value="turn * 30"
+				data-type="linear-gauge"
+				data-width="400"
+				data-height="150"
+				data-min-value="-30"
+				data-max-value="30"
+				data-major-ticks="-30,-20,-10,0,10,20,30"
+				data-minor-ticks="5"
+				data-animation-duration="100"
+				data-bar-begin-circle="false">
+			</canvas>
+		</div>
+	</body>
+</html>

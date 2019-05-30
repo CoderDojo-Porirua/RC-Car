@@ -15,11 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
 			connection.getElementsByTagName('p')[0].innerHTML = "Gamepad found";
 			connection.getElementsByTagName('p')[1].innerHTML = gp.id;
 			const data = {
-				speed: gp.buttons[7].value - gp.buttons[6].value,
-				turn: gp.axes[0]
+				left: 0,
+				right: 0,
+				forward: 0,
+				back: 0
 			};
-			speed.setAttribute('data-value', data.speed * 100);
-			turn.setAttribute('data-value', data.turn * 30);
+			const currentSpeed = gp.buttons[7].value - gp.buttons[6].value;
+			const currentTurn = gp.axes[0];
+			if (currentSpeed > 0) {
+				data.forward = currentSpeed;
+			} else if (currentSpeed < 0) {
+				data.back = - currentSpeed;
+			}
+			if (currentTurn > 0.1) { // Dead zone
+				data.right = currentTurn;
+			} else if (currentTurn < -0.1) {
+				data.left = - currentTurn;
+			}
+			speed.setAttribute('data-value', currentSpeed * 100);
+			turn.setAttribute('data-value', currentTurn * 30);
 			if (ws && ws.readyState == 1) {
 				ws.send(JSON.stringify(data));
 			}
