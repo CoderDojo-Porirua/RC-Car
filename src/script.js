@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		el: '#app',
 		data: {
 			gamepad: null,
+			light: 0,
 		},
 		computed: {
 			alert: function() {
@@ -27,18 +28,19 @@ document.addEventListener('DOMContentLoaded', () => {
 			turn: function() {
 				return (this.gamepad ? this.gamepad.axes[0] : 0);
 			},
-			data: function() {
-				return {
-					right: (this.turn > 0.1 ? this.turn : 0),
-					left: (this.turn < -0.1 ? -this.turn : 0),
-					forward: (this.speed > 0 ? this.speed : 0),
-					back: (this.speed < -0 ? -this.speed : 0),
-				};
-			},
 		},
 		watch: {
-			data: function(data) {
+			gamepad: function(gamepad, oldgamepad) {
 				if (websocket && websocket.readyState == 1) {
+					if (gamepad && oldgamepad && gamepad.buttons[0].value && !oldgamepad.buttons[0].value) this.light = !this.light;
+					const data = {
+						forward: (this.speed > 0 ? this.speed : 0),
+						back: (this.speed < -0 ? -this.speed : 0),
+						right: (this.turn > 0.1 ? this.turn : 0),
+						left: (this.turn < -0.1 ? -this.turn : 0),
+						light: (this.light),
+						horn: (gamepad && gamepad.buttons[1].value ? 0.5 : 0),
+					};
 					websocket.send(JSON.stringify(data));
 				}
 			},
