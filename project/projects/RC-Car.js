@@ -31,7 +31,6 @@ const socketserver = ws.createServer((req, res) => { // https://www.espruino.com
 socketserver.on("websocket", (ws) => {
 	var timer;
 	ws.on('message', (data) => { // When we receive a message, send our new instructions to the car
-		console.log(typeof data);
 		data = JSON.parse(data);
 		analogWrite(input.left, data.left);
 		analogWrite(input.right, data.right);

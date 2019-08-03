@@ -4,8 +4,8 @@
   "description": "Code to allow an ESP8266 to control a Remote Control Car over WiFi, using a websocket.",
   "main": "client.js",
   "scripts": {
-    "flash.old": "esptool.py --port COM7 --baud 115200 write_flash --flash_freq 80m --flash_mode qio --flash_size 32m 0x0000 firmware/boot_v1.6.bin 0x1000 firmware/espruino_esp8266_user1.bin 0x3FC000 firmware/esp_init_data_default.bin 0x3FE000 firmware/blank.bin",
-    "flash": "espruino --port COM7 -b 115200 --no-ble -f firmware/espruino_2v03_esp8266_4mb_combined_4096.bin",
+    "flash": "esptool.py --port COM6 --baud 115200 write_flash --flash_freq 80m --flash_mode qio --flash_size 4MB 0x0000 firmware/boot_v1.6.bin 0x1000 firmware/espruino_esp8266_user1.bin 0x3FC000 firmware/esp_init_data_default.bin 0x3FE000 firmware/blank.bin",
+    "flash.test": "espruino --port COM7 -b 115200 --no-ble -f firmware/espruino_2v03_esp8266_4mb_combined_4096.bin",
     "upload": "node write.js"
   },
   "repository": {
