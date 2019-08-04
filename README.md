@@ -21,13 +21,13 @@ Because this code uses JavaScript, the ESP8266 needs to be flashed with the Espr
 From within the folder that you download the firmware files to, run the following command to flash the ESP8266 with the latest Espruino firmware. Just change the COM port to the port that the EsP8266 is using.
 
 ```powershell
-esptool.py write_flash --port COM6 --baud 115200 --flash_freq 80m --flash_mode qio --flash_size 4MB 0x0000 boot_v1.6.bin 0x1000 espruino_esp8266_user1.bin 0x3FC000 esp_init_data_default.bin 0x3FE000 blank.bin
+esptool.py write_flash --port COMX --baud 115200 --flash_freq 80m --flash_mode qio --flash_size 4MB 0x0000 boot_v1.6.bin 0x1000 espruino_esp8266_user1.bin 0x3FC000 esp_init_data_default.bin 0x3FE000 blank.bin
 ```
 
 To fix bad code, run:
 
 ```powershell
-esptool.py write_flash --port COM6 --baud 115200 --flash_freq 80m --flash_mode qio --flash_size 4MB 0x3FE000 blank.bin
+esptool.py --port COMX --baud 115200 write_flash --flash_freq 80m --flash_mode qio --flash_size 4MB 0x3FE000 blank.bin
 ```
 
 To upload code to the ESP8266, use the Espruino IDE, which can be downloaded from:
