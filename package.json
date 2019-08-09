@@ -6,7 +6,8 @@
   "scripts": {
     "flash": "esptool.py --port COM6 --baud 115200 write_flash --flash_freq 80m --flash_mode qio --flash_size 4MB 0x0000 firmware/boot_v1.6.bin 0x1000 firmware/espruino_esp8266_user1.bin 0x3FC000 firmware/esp_init_data_default.bin 0x3FE000 firmware/blank.bin",
     "flash.test": "espruino --port COM7 -b 115200 --no-ble -f firmware/espruino_2v03_esp8266_4mb_combined_4096.bin",
-    "upload": "node write.js"
+    "upload": "node write.js",
+    "server": "node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,8 @@
   },
   "homepage": "https://github.com/CoderDojo-Porirua/RC-Car#readme",
   "devDependencies": {
-    "espruino": "^0.1.27",
-    "tailwindcss": "^1.0.2"
+    "espruino": "^0.1.28",
+    "tailwindcss": "^1.1.0",
+    "ws": "^7.1.1"
   }
 }

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-	const websocket = (location.host ? new WebSocket("ws://" + location.host, "protocolOne") : null);
+	const websocket = (location.host ? new WebSocket("ws://" + location.host, "protocolOne") : new WebSocket("ws://localhost", "protocolOne"));
 	const app = new Vue({
 		el: '#app',
 		data: {
@@ -9,19 +9,25 @@ document.addEventListener('DOMContentLoaded', () => {
 		},
 		computed: {
 			left: function() {
-				return (this.gamepad < -0.1 ? - parseFloat(this.gamepad.axes[0].toFixed(2)) : 0);
+				return (this.gamepad < -0.1 ? - parseFloat(this.gamepad.axes[0].toFixed(1)) : 0);
 			},
 			right: function() {
-				return (this.gamepad > 0.1 ? parseFloat(this.gamepad.axes[0].toFixed(2)) : 0);
+				return (this.gamepad > 0.1 ? parseFloat(this.gamepad.axes[0].toFixed(1)) : 0);
 			},
 			forward: function() {
-				return (this.gamepad ? parseFloat(this.gamepad.buttons[7].value.toFixed(2)) : 0);
+				return (this.gamepad ? parseFloat(this.gamepad.buttons[7].value.toFixed(1)) : 0);
 			},
 			back: function() {
-				return (this.gamepad ? - parseFloat(this.gamepad.buttons[6].value.toFixed(2)) : 0);
+				return (this.gamepad ? - parseFloat(this.gamepad.buttons[6].value.toFixed(1)) : 0);
+			},
+			speed: function() {
+				return (this.gamepad ? parseFloat((this.gamepad.buttons[7].value.toFixed(1) - this.gamepad.buttons[6].value.toFixed(1))) : 0);
+			},
+			turn: function() {
+				return (this.gamepad ? parseFloat(this.gamepad.axes[0].toFixed(1)) : 0);
 			},
 			horn: function() {
-				return (gamepad && gamepad.buttons[1].value ? 0.5 : 0);
+				return (this.gamepad && this.gamepad.buttons[1].value ? 0.5 : 0);
 			},
 			alert: function() {
 				if (this.gamepad) {
@@ -49,19 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
 			left: function(data) {
 				this.send(['left', data]);
 			},
-			right: function() {
+			right: function(data) {
 				this.send(['right', data]);
 			},
-			forward: function() {
+			forward: function(data) {
 				this.send(['forward', data]);
 			},
-			back: function() {
+			back: function(data) {
 				this.send(['back', data]);
 			},
-			horn: function() {
+			horn: function(data) {
 				this.send(['horn', data]);
 			},
-			light: function() {
+			light: function(data) {
 				this.send(['light', data]);
 			},
 		},
