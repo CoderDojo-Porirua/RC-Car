@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		},
 		computed: {
 			left: function() {
-				return (this.gamepad < -0.1 ? - parseFloat(this.gamepad.axes[0].toFixed(1)) : 0);
+				return (this.gamepad && this.gamepad.axes[0].toFixed(1) < -0.1 ? - parseFloat(this.gamepad.axes[0].toFixed(1)) : 0);
 			},
 			right: function() {
-				return (this.gamepad > 0.1 ? parseFloat(this.gamepad.axes[0].toFixed(1)) : 0);
+				return (this.gamepad && this.gamepad.axes[0].toFixed(1) > 0.1 ? parseFloat(this.gamepad.axes[0].toFixed(1)) : 0);
 			},
 			forward: function() {
 				return (this.gamepad ? parseFloat(this.gamepad.buttons[7].value.toFixed(1)) : 0);
