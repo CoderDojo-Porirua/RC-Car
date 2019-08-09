@@ -36,8 +36,10 @@
 				data-animation-duration="0"
 				data-bar-begin-circle="false">
 			</canvas>
-			<meter style="width: 200px" min="-1" max="1" low="0" high="1.5" optimum="1.75" :value="speed"></meter>
-			<progress min="-1" max="1" value="turn"></progress>
+			<h2>Speed</h2>
+			<meter style="width: 200px" min="-1" max="1" low="0" high="0.5" optimum="0.75" :value="speed"></meter>
+			<h2>Steering</h2>			
+			<progress min="0" max="2" :value="turn + 1"></progress>
 		</div>
 	</body>
 </html>
